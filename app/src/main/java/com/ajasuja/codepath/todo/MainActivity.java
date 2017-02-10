@@ -10,6 +10,9 @@ import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.ListView;
 
+import com.ajasuja.codepath.todo.db.Todo;
+import com.ajasuja.codepath.todo.db.TodoDAO;
+
 import org.apache.commons.io.FileUtils;
 
 import java.io.File;
@@ -26,6 +29,7 @@ public class MainActivity extends AppCompatActivity {
 
     private static final String TODO_FILE_NAME =  "todo.txt";
     private static final int REQEUST_CODE = 0;
+    private boolean toFile = false;
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
@@ -37,7 +41,8 @@ public class MainActivity extends AppCompatActivity {
             System.out.println("on Main activity ... " + todoItemUpdated + " at position ... " + position);
             todoItems.set(position, todoItemUpdated);
             itemsAdapter.notifyDataSetChanged();
-            writeItemsToFile();
+//            writeItemsToFile();
+            writeItems();
         }
     }
 
@@ -58,7 +63,8 @@ public class MainActivity extends AppCompatActivity {
                 System.out.println("on item long clicked at position ... " + position);
                 todoItems.remove(position);
                 itemsAdapter.notifyDataSetChanged();
-                writeItemsToFile();
+//                writeItemsToFile();
+                writeItems();
                 return true;
             }
         });
@@ -77,13 +83,58 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void bootstrapTodoItems() {
-        readItemsFromFile();
+        readItems();
+//        readItemsFromFile();
     }
 
     public void onAddItem(View view) {
         itemsAdapter.add(editTextNewItem.getText().toString());
         editTextNewItem.setText("");
-        writeItemsToFile();
+//        writeItemsToFile();
+        writeItems();
+    }
+
+
+    private void writeItems() {
+        if (toFile) {
+            writeItemsToFile();
+        } else {
+            writeItemsToDB();
+        }
+    }
+
+    private void readItems() {
+        if (toFile) {
+            readItemsFromFile();
+        } else {
+            readItemsFromDB();
+        }
+    }
+
+    // ------- DB Persistence ------------
+    private void writeItemsToDB() {
+        TodoDAO todoDAO = new TodoDAO();
+        todoDAO.deleteAll();
+        for (String todoItem : todoItems) {
+            Todo todo = new Todo();
+            todo.setTodoName(todoItem);
+            todoDAO.upsert(todo);
+        }
+    }
+
+    private void readItemsFromDB() {
+        TodoDAO todoDAO = new TodoDAO();
+        List<Todo> allTodos = todoDAO.getAllTodos();
+        for (Todo todo : allTodos) {
+            todoItems.add(todo.getTodoName());
+        }
+    }
+
+    // ------ File Persistence ------------
+    @NonNull
+    private File getTodoFile() {
+        File filesDir = getFilesDir();
+        return new File(filesDir, TODO_FILE_NAME);
     }
 
     private void readItemsFromFile() {
@@ -94,12 +145,6 @@ public class MainActivity extends AppCompatActivity {
         } catch (IOException e) {
             e.printStackTrace();
         }
-    }
-
-    @NonNull
-    private File getTodoFile() {
-        File filesDir = getFilesDir();
-        return new File(filesDir, TODO_FILE_NAME);
     }
 
     private void writeItemsToFile() {
