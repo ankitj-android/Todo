@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:descendantFocusability="blocksDescendants"
+    android:weightSum="1">
+
+    <CheckBox
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:focusable="false"
+        android:id="@+id/checkBoxIsComplete" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="32dp"
+        android:id="@+id/textViewTodoItemName"
+        android:text="Todo Item Name"
+        android:focusableInTouchMode="false"
+        android:clickable="false"
+        android:focusable="false"
+        android:layout_weight="0.71" />
+
+    <TextView
+        android:text="17/02/05"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/textViewDueDate"
+        android:focusableInTouchMode="false"
+        android:clickable="false"
+        android:focusable="false"
+        android:layout_weight="0.12" />
+
+    <TextView
+        android:text="P0"
+        android:layout_width="23dp"
+        android:layout_height="wrap_content"
+        android:id="@+id/textViewPriority"
+        android:focusableInTouchMode="false"
+        android:clickable="false"
+        android:focusable="false"
+        android:layout_weight="0.07" />
+
+    <ImageButton
+        android:layout_height="wrap_content"
+        app:srcCompat="@android:drawable/btn_dialog"
+        android:id="@+id/imageButtonDelete"
+        android:background="@android:color/background_light"
+        android:focusable="false"
+        android:onClick="onDelete"
+        android:layout_width="wrap_content" />
+
+</LinearLayout>

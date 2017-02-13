@@ -19,6 +19,17 @@
         android:layout_alignParentStart="true"
         android:layout_marginBottom="36dp" />
 
+    <Button
+        android:text="Add"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="11dp"
+        android:id="@+id/buttonAddItem"
+        android:onClick="onAddItem"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true" />
+
     <EditText
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -26,22 +37,15 @@
         android:ems="10"
         android:id="@+id/editTextNewItem"
         android:hint="Add new todo item ..."
-        android:layout_alignBottom="@+id/buttonAddItem"
-        android:layout_toLeftOf="@+id/buttonAddItem"
-        android:layout_toStartOf="@+id/buttonAddItem"
-        android:layout_marginRight="28dp"
-        android:layout_marginEnd="28dp" />
+        android:layout_above="@+id/buttonAddItem"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
 
-    <Button
-        android:text="Add"
+    <Spinner
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginRight="11dp"
-        android:layout_marginEnd="11dp"
-        android:layout_marginBottom="13dp"
-        android:id="@+id/buttonAddItem"
-        android:onClick="onAddItem"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true" />
+        android:layout_alignBottom="@+id/buttonAddItem"
+        android:id="@+id/spinnerPriority" />
 </RelativeLayout>
