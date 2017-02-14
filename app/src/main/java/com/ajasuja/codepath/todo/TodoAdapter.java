@@ -48,8 +48,10 @@ public class TodoAdapter extends ArrayAdapter<Todo> {
         imageButtonCalendar.setTag(todoItem);
         imageButtonDelete.setTag(todoItem);
 
-        checkBoxIsComplete.setChecked(todoItem.isComplete() == null ? false : todoItem.isComplete());
+        boolean checked = todoItem.isComplete() == null ? false : todoItem.isComplete();
+        checkBoxIsComplete.setChecked(checked);
         textViewTodoItemName.setText(todoItem.getTodoName() == null ? "default" : todoItem.getTodoName());
+        strikeThroughTodoName(checked, textViewTodoItemName);
 //        textViewDueDate.setText(String.valueOf(todoItem.getTimeInMillis()));
         textViewDueDate.setText(DateUtils.formatDateTime(getContext(), todoItem.getTimeInMillis(), DateUtils.FORMAT_SHOW_DATE));
         textViewPriority.setText("P" + todoItem.getPriority());
@@ -58,11 +60,7 @@ public class TodoAdapter extends ArrayAdapter<Todo> {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 System.out.println("check box state changed ... " + isChecked + ", " +todoItem) ;
-                if (isChecked) {
-                    textViewTodoItemName.setPaintFlags(textViewTodoItemName.getPaintFlags() | Paint.STRIKE_THRU_TEXT_FLAG);
-                } else {
-                    textViewTodoItemName.setPaintFlags(0);
-                }
+                strikeThroughTodoName(isChecked, textViewTodoItemName);
                 todoItem.setComplete(isChecked);
                 TodoDAO todoDAO = new TodoDAO();
                 todoDAO.upsert(todoItem);
@@ -70,5 +68,13 @@ public class TodoAdapter extends ArrayAdapter<Todo> {
         });
 
         return convertView;
+    }
+
+    private void strikeThroughTodoName(boolean isChecked, TextView textViewTodoItemName) {
+        if (isChecked) {
+            textViewTodoItemName.setPaintFlags(textViewTodoItemName.getPaintFlags() | Paint.STRIKE_THRU_TEXT_FLAG);
+        } else {
+            textViewTodoItemName.setPaintFlags(0);
+        }
     }
 }
