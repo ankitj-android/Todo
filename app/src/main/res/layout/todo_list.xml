@@ -32,6 +32,14 @@
         android:focusable="false"
         android:layout_weight="0.12" />
 
+    <ImageButton
+        android:layout_width="35dp"
+        android:layout_height="36dp"
+        app:srcCompat="@mipmap/calendar"
+        android:focusable="false"
+        android:onClick="onCalendar"
+        android:id="@+id/imageButtonCalendar" />
+
     <TextView
         android:text="P0"
         android:layout_width="23dp"
@@ -44,7 +52,7 @@
 
     <ImageButton
         android:layout_height="wrap_content"
-        app:srcCompat="@android:drawable/btn_dialog"
+        app:srcCompat="@mipmap/delete_bin"
         android:id="@+id/imageButtonDelete"
         android:background="@android:color/background_light"
         android:focusable="false"

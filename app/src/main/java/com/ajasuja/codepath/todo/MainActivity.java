@@ -3,6 +3,7 @@ package com.ajasuja.codepath.todo;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
+import android.support.v4.app.DialogFragment;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.AdapterView;
@@ -13,15 +14,18 @@ import android.widget.Spinner;
 
 import com.ajasuja.codepath.todo.db.Todo;
 import com.ajasuja.codepath.todo.db.TodoDAO;
+import com.ajasuja.codepath.todo.fragment.DatePickerFragment;
 
 import org.apache.commons.io.FileUtils;
 
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
+import java.util.Locale;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements DatePickerFragment.DatePickerDialogListener {
 
     private List<Todo> todoItems;
     private ArrayAdapter<String> itemsAdapter;
@@ -206,6 +210,27 @@ public class MainActivity extends AppCompatActivity {
         Todo todoToDelete = (Todo) view.getTag();
         todoDAO.delete(todoToDelete);
         todoItems.remove(todoToDelete);
+        todoAdapter.notifyDataSetChanged();
+    }
+
+    public void onCalendar(View view) {
+        System.out.println("on calendar click ...");
+        Todo todoToDelete = (Todo) view.getTag();
+        Bundle mainActivity2DatePickerFragmentBundle = new Bundle();
+        mainActivity2DatePickerFragmentBundle.putSerializable("TodoItem", todoToDelete);
+        DialogFragment newFragment = new DatePickerFragment();
+        newFragment.setArguments(mainActivity2DatePickerFragmentBundle);
+        newFragment.show(getSupportFragmentManager(), "datePicker");
+    }
+
+    @Override
+    public void onDateSelected(Todo todo, int year, int month, int day) {
+        System.out.println("back to main activity with dates ... " + todo + year + month + day);
+        Calendar calendar = Calendar.getInstance(Locale.US);
+        calendar.set(year, month, day);
+        todo.setTimeInMillis(calendar.getTimeInMillis());
+        TodoDAO todoDAO = new TodoDAO();
+        todoDAO.upsert(todo);
         todoAdapter.notifyDataSetChanged();
     }
 }
