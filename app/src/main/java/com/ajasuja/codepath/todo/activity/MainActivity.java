@@ -1,4 +1,4 @@
-package com.ajasuja.codepath.todo;
+package com.ajasuja.codepath.todo.activity;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -12,6 +12,8 @@ import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.Spinner;
 
+import com.ajasuja.codepath.todo.R;
+import com.ajasuja.codepath.todo.adapter.TodoAdapter;
 import com.ajasuja.codepath.todo.db.Todo;
 import com.ajasuja.codepath.todo.db.TodoDAO;
 import com.ajasuja.codepath.todo.fragment.DatePickerFragment;
@@ -70,7 +72,7 @@ public class MainActivity extends AppCompatActivity implements DatePickerFragmen
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        setTitle("Todo");
+        setTitle("TaskIt");
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         listViewTodoItems = (ListView) findViewById(R.id.listViewTodoItems);
@@ -128,6 +130,7 @@ public class MainActivity extends AppCompatActivity implements DatePickerFragmen
         Todo todo = new Todo();
         todo.setTodoName(editTextNewItem.getText().toString());
         todo.setPriority(spinnerPriority.getSelectedItemPosition() + 1);
+        todo.setTimeInMillis(System.currentTimeMillis() + 86400000);
         todo.setComplete(false);
         todoItems.add(todo);
         todoAdapter.notifyDataSetChanged();

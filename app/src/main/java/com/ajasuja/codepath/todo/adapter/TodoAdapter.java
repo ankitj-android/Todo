@@ -1,6 +1,7 @@
-package com.ajasuja.codepath.todo;
+package com.ajasuja.codepath.todo.adapter;
 
 import android.content.Context;
+import android.graphics.Color;
 import android.graphics.Paint;
 import android.support.annotation.NonNull;
 import android.text.format.DateUtils;
@@ -13,6 +14,7 @@ import android.widget.CompoundButton;
 import android.widget.ImageButton;
 import android.widget.TextView;
 
+import com.ajasuja.codepath.todo.R;
 import com.ajasuja.codepath.todo.db.Todo;
 import com.ajasuja.codepath.todo.db.TodoDAO;
 
@@ -55,6 +57,14 @@ public class TodoAdapter extends ArrayAdapter<Todo> {
 //        textViewDueDate.setText(String.valueOf(todoItem.getTimeInMillis()));
         textViewDueDate.setText(DateUtils.formatDateTime(getContext(), todoItem.getTimeInMillis(), DateUtils.FORMAT_SHOW_DATE));
         textViewPriority.setText("P" + todoItem.getPriority());
+        switch (todoItem.getPriority()) {
+            case 1 : textViewPriority.setTextColor(Color.RED);
+                break;
+            case 2 : textViewPriority.setTextColor(Color.YELLOW);
+                break;
+            case 3 : textViewPriority.setTextColor(Color.GREEN);
+                break;
+        }
 
         checkBoxIsComplete.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override

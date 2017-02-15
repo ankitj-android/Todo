@@ -1,4 +1,4 @@
-package com.ajasuja.codepath.todo;
+package com.ajasuja.codepath.todo.activity;
 
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
@@ -6,13 +6,15 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
 
+import com.ajasuja.codepath.todo.R;
+
 public class EditItemActivity extends AppCompatActivity {
 
     private EditText editTextTodoItem;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        setTitle("Edit Todo");
+        setTitle("Edit Task");
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_edit_item);
 

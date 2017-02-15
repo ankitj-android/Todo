@@ -6,7 +6,7 @@ import android.os.Bundle;
 import android.support.v4.app.DialogFragment;
 import android.widget.DatePicker;
 
-import com.ajasuja.codepath.todo.MainActivity;
+import com.ajasuja.codepath.todo.activity.MainActivity;
 import com.ajasuja.codepath.todo.db.Todo;
 
 import java.util.Calendar;

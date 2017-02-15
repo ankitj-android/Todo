@@ -1,4 +1,4 @@
-# Pre-work - *Todo*
+# Pre-work - *TaskIt*
 
 **Name of your app** is an android app that allows building a todo list and basic todo items management functionality including adding new items, editing and deleting an existing item.
 
@@ -21,17 +21,18 @@ The following **optional** features are implemented:
 * [x] Add support for completion due dates for todo items (and display within listview item)
 * [ ] Use a [DialogFragment](http://guides.codepath.com/android/Using-DialogFragment) instead of new Activity for editing items
 * [x] Add support for selecting the priority of each todo item (and display in listview item)
-* [ ] Tweak the style improving the UI / UX, play with colors, images or backgrounds
+* [x] Tweak the style improving the UI / UX, play with colors, images or backgrounds
 
 The following **additional** features are implemented:
 
-* [ ] Use a [DialogFragment](http://guides.codepath.com/android/Using-DialogFragment) for opening up date picker.
+* [x] Use a [DialogFragment](http://guides.codepath.com/android/Using-DialogFragment) for opening up date picker.
+* [x] User can **complete items** from the todo list by checking on a CheckBox.
 
 ## Video Walkthrough 
 
 Here's a walkthrough of implemented user stories:
 
-<img src='http://i.imgur.com/link/to/your/gif/file.gif' title='Video Walkthrough' width='' alt='Video Walkthrough' />
+![](./demo/taskit-2.gif)
 
 GIF created with [LiceCap](http://www.cockos.com/licecap/).
 
@@ -41,7 +42,7 @@ Describe any challenges encountered while building the app.
 
 ## License
 
-    Copyright [yyyy] [name of copyright owner]
+    Copyright [2017] [Ankit Jasuja]
 
     Licensed under the Apache License, Version 2.0 (the "License");
     you may not use this file except in compliance with the License.

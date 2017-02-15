@@ -4,6 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:descendantFocusability="blocksDescendants"
+    android:dividerPadding="3dp"
     android:weightSum="1">
 
     <CheckBox
@@ -20,25 +21,9 @@
         android:focusableInTouchMode="false"
         android:clickable="false"
         android:focusable="false"
-        android:layout_weight="0.71" />
-
-    <TextView
-        android:text="17/02/05"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/textViewDueDate"
-        android:focusableInTouchMode="false"
-        android:clickable="false"
-        android:focusable="false"
-        android:layout_weight="0.12" />
-
-    <ImageButton
-        android:layout_width="35dp"
-        android:layout_height="36dp"
-        app:srcCompat="@mipmap/calendar"
-        android:focusable="false"
-        android:onClick="onCalendar"
-        android:id="@+id/imageButtonCalendar" />
+        android:layout_weight="0.71"
+        android:fontFamily="casual"
+        android:textStyle="normal|bold" />
 
     <TextView
         android:text="P0"
@@ -48,15 +33,34 @@
         android:focusableInTouchMode="false"
         android:clickable="false"
         android:focusable="false"
-        android:layout_weight="0.07" />
+        android:layout_weight="0.07"
+        android:fontFamily="casual" />
+
+    <TextView
+        android:text="17/02/05"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/textViewDueDate"
+        android:focusableInTouchMode="false"
+        android:clickable="false"
+        android:focusable="false"
+        android:layout_weight="0.12"
+        android:fontFamily="casual" />
 
     <ImageButton
-        android:layout_height="wrap_content"
-        app:srcCompat="@mipmap/delete_bin"
-        android:id="@+id/imageButtonDelete"
-        android:background="@android:color/background_light"
+        android:layout_width="35dp"
+        android:layout_height="36dp"
+        app:srcCompat="@mipmap/calendar"
         android:focusable="false"
-        android:onClick="onDelete"
-        android:layout_width="wrap_content" />
+        android:onClick="onCalendar"
+        android:id="@+id/imageButtonCalendar" />
+
+    <ImageButton
+        android:layout_width="35dp"
+        android:layout_height="36dp"
+        app:srcCompat="@mipmap/trash_bin_1_48px"
+        android:id="@+id/imageButtonDelete"
+        android:focusable="false"
+        android:onClick="onDelete" />
 
 </LinearLayout>
