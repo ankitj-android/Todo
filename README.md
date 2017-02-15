@@ -28,7 +28,7 @@ The following **additional** features are implemented:
 * [x] Use a [DialogFragment](http://guides.codepath.com/android/Using-DialogFragment) for opening up date picker.
 * [x] User can **complete items** from the todo list by checking on a CheckBox.
 
-## Video Walkthrough 
+## Video Walkthrough
 
 Here's a walkthrough of implemented user stories:
 
@@ -38,7 +38,7 @@ GIF created with [LiceCap](http://www.cockos.com/licecap/).
 
 ## Notes
 
-Describe any challenges encountered while building the app.
+- Aligning and padding custom row elements in list view.
 
 ## License
 
